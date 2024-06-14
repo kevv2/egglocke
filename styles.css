@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    align-items: flex-start;
+}
+
+#control-box {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 200px;
+}
+
+#num-groups, #reset-grid, #random-egg {
+    margin-bottom: 10px;
+}
+
+#selected-checkbox-info {
+    font-weight: bold;
+}
+
+#checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 20px; /* Gap between checkbox groups */
+    column-gap: 50px;
+
+}
+
+.checkbox-group {
+    text-align: center; /* Center-align text */
+    border: 2px solid #000;
+    padding: 10px;
+    width: 100%; /* Ensure each group takes full width of its container */
+}
+
+.checkbox-group h2 {
+    margin-top: 0; /* Remove default margin */
+}
+
+.checkboxes-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columns */
+    grid-template-rows: repeat(5, 1fr); /* 5 rows */
+    gap: 10px; /* Gap between checkboxes */
+}
+
+.checkboxes-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.highlight {
+    outline: 2px solid red; /* Red outline as highlight */
+}
