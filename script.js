@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                             cb.classList.remove('highlight');
                         });
+                        storeCheckboxState();
                     });
                 }
             }
