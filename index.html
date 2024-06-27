@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Grid</title>
+    <title>Egglocke Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="control-box">
-        <label for="num-groups">Number of Boxes:</label>
-        <input type="number" id="num-groups" min="1" max="100" value="3">
+        <div id="box-options">
+            <div id="box-amount">
+                <label for="num-groups">Boxes:</label>
+                <input type="number" id="num-groups" min="1" max="100" value="3">
+            </div>
+            <div id="box-columns">
+                <label for="box-columns-value">Columns</label>
+                <input type="number" id="box-columns-value" min="1" max="100" value="5">
+            </div>
+        </div>
         <button id="reset-grid">Reset</button>
         <button id="random-egg">Random Egg</button>
         <p id="selected-checkbox-info"></p>

@@ -4,8 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomEggButton = document.getElementById('random-egg');
     const selectedCheckboxInfo = document.getElementById('selected-checkbox-info');
     const numGroupsInput = document.getElementById('num-groups');
+    const numGroupsColumnsInput = document.getElementById('box-columns-value');
 
-    let numGroups = parseInt(localStorage.getItem('numGroups')) || 3; // Default number of groups
+    // Function to store checkbox state in localStorage
+    function storeCheckboxState() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const state = {};
+
+        checkboxes.forEach(cb => {
+            state[cb.id] = cb.checked;
+        });
+
+        localStorage.setItem('checkboxState', JSON.stringify(state));
+    }
 
     // Function to create the grid with a specified number of groups
     function createGrid(numGroups, reset=false) {
@@ -64,16 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         storeCheckboxState();
     }
 
-    // Function to store checkbox state in localStorage
-    function storeCheckboxState() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        const state = {};
+    function updateBoxColumns() {
+        const checkboxContainerStyle = document.querySelector('#checkbox-container');
 
-        checkboxes.forEach(cb => {
-            state[cb.id] = cb.checked;
-        });
-
-        localStorage.setItem('checkboxState', JSON.stringify(state));
+        checkboxContainerStyle.style.setProperty('grid-template-columns', `repeat(${numGroupsColumnsInput.value}, 1fr)`)
+        localStorage.setItem('numGroupColumns', numGroupsColumnsInput.value);
     }
 
     // Event listener for the reset grid button
@@ -91,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     randomEggButton.addEventListener('click', () => {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         if (checkboxes.length === 0) {
-            alert('No checkboxes selected');
+            alert('No eggs left 😢');
             return;
         }
 
@@ -118,6 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store entire checkbox state in localStorage after modification
         storeCheckboxState();
     });
+
+    let numGroups = parseInt(localStorage.getItem('numGroups')) || 3; // Default number of groups
+    numGroupsInput.value = numGroups
+
+    numGroupsColumnsInput.value = parseInt(localStorage.getItem('numGroupColumns')) || 3; // Default number of groups
+    updateBoxColumns()
+
+    numGroupsColumnsInput.addEventListener('input', updateBoxColumns)
 
     // Initialize the grid with the stored number of groups on page load
     createGrid(numGroups);

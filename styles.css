@@ -11,11 +11,32 @@ body {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-    width: 200px;
+    width: 150px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#control-box > * {
+    width: 100%;
 }
 
 #num-groups, #reset-grid, #random-egg {
     margin-bottom: 10px;
+}
+
+#box-options {
+    display: flex;
+    flex-direction: row;
+}
+
+#box-options > * {
+    text-align: center;
+    width: 40%;
+    margin-right: auto;
+}
+
+#box-options > * > * {
+    width: 100%;
 }
 
 #selected-checkbox-info {
@@ -43,6 +64,7 @@ body {
 
 .checkboxes-container {
     display: grid;
+    grid-column: 6;
     grid-template-columns: repeat(6, 1fr); /* 6 columns */
     grid-template-rows: repeat(5, 1fr); /* 5 rows */
     gap: 10px; /* Gap between checkboxes */
